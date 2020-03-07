@@ -1,7 +1,7 @@
 <html>
   <head>
     <script src="jumper.js"> </script>
-    <script src="p5/p5.min.js"></script>
+    <script src="p5.min.js"></script>
     <script src="barrier.js"></script>
   
   <style>
@@ -21,14 +21,19 @@
   
   <body>
     <script>
+     
+     var border =[];
       var w = window.innerWidth;
       var h = window.innerHeight;
       var jumper=new jumper(); // declare object
-      var barrier= new barrier();
+      var i = 0;
     
     function setup(){
       
-      createCanvas(w,h)
+      createCanvas(w,h);
+      for (var i = 0; i < 2; i++) {
+        border.push(new barrier());
+      }
       
     }
     
@@ -36,9 +41,12 @@
       
        clear(); // clear canvas
       jumper.show(); // load show
-      barrier.show();
       jumper.update(); // load update
-      barrier.update();
+      
+      for (var i = 0; i < border.length; i++) {
+        border[i].update();
+        border[i].show();
+    };
 
           if ((keyIsDown(37))&&(jumper.x > 25)){ //left
         jumper.x -= 10;

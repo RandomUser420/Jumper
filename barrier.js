@@ -1,5 +1,8 @@
 //builds a barrier that goes across screen and reappear
 
+
+
+
 function barrier() {
   this.width = 50;
   this.height = 200;
@@ -13,7 +16,7 @@ function barrier() {
 
 
   this.show = function () {
-
+    
     fill(0, 0, 255);
     rect(this.x, this.y, this.width, this.height);
 
@@ -27,8 +30,8 @@ function barrier() {
 
     if (this.x < 0) {
       this.x = w + this.width;
-      this.y = Math.floor((Math.random() * h) + 10);
+      this.y = Math.floor((Math.random() * h)+10);
       this.velocity = 0;
     }
   }
-};
+}
