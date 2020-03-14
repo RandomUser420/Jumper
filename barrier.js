@@ -4,15 +4,15 @@
 
 
 function barrier() {
-  this.width = 50;
-  this.height = 200;
+  this.width = 25;
+  this.height = 100;
 
-  this.x = w - 100;
-  this.y = h - 300;
+  this.x =Math.floor(Math.random());
+  this.y =Math.floor(Math.random());
 
   this.gravity = 0.5; // force of gravity
   this.lift = -10;
-  this.velocity = 0;
+  this.velocity = 10;
 
 
   this.show = function () {
@@ -24,14 +24,13 @@ function barrier() {
   };
 
   this.update = function () {
-    this.velocity += this.gravity;
     this.x -= this.velocity;
     // this velocity *= 0.9; // air resistance
 
     if (this.x < 0) {
       this.x = w + this.width;
       this.y = Math.floor((Math.random() * h)+10);
-      this.velocity = 0;
+      this.velocity = Math.floor((Math.random()+1)*8);
     }
   }
 }

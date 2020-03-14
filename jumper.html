@@ -3,6 +3,9 @@
     <script src="jumper.js"> </script>
     <script src="p5.min.js"></script>
     <script src="barrier.js"></script>
+    <script src="p5.collide2d.min.js"></script>
+     <script src="p5.collide2d.js"></script>
+     <script src="p5collide2d.png"></script>
   
   <style>
     
@@ -10,6 +13,16 @@
       margin:0;
       padding:0;
     }
+    
+    p {
+      position:absolute;
+      top:25%;
+      
+    }
+    
+    h1 { position:absolute;
+         top:15%;
+         left:30%;
     
     
     
@@ -27,11 +40,15 @@
       var h = window.innerHeight;
       var jumper=new jumper(); // declare object
       var i = 0;
+      var hit = false;
+      var jumpcount = 0;
+      var number=0;
+    
     
     function setup(){
       
       createCanvas(w,h);
-      for (var i = 0; i < 2; i++) {
+      for (var i = 0; i < 3; i++) {
         border.push(new barrier());
       }
       
@@ -46,6 +63,12 @@
       for (var i = 0; i < border.length; i++) {
         border[i].update();
         border[i].show();
+       hit = collideRectCircle(border[i].x,border[i].y,border[i].width,border[i].height,jumper.x,jumper.y,50);
+
+	if(hit==true){
+	  noLoop();
+	  document.getElementById("over").innerHTML = "Game Over Press R to Try Again"
+	}
     };
 
           if ((keyIsDown(37))&&(jumper.x > 25)){ //left
@@ -55,15 +78,30 @@
       if ((keyIsDown(39))&&(jumper.x < w-25)){
         jumper.x +=10;
       }
+ 
     }
     
     function keyPressed(){
       if (keyCode===32){
         jumper.up();
+        jumpcount++; // this is what you add to the jumpcount
+        number++
+        document.getElementById("score").innerHTML = "Score" + " " +number
+      }
+      if(keyCode===82){
+        location.reload();
       }
   
+  
     }
+ 
     </script>
+  
+  <p id="score"> </p>
+  <h1 id="over"></h1>
+  
+  
+  
   </body>
   
   
